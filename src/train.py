@@ -21,6 +21,14 @@ from src.model import IntentModel, save_model, train_baseline
 from src.routing import simulate_routing
 
 
+def infer_synthetic_flag(data) -> bool:
+    """Return True only when a dataset explicitly marks every row as synthetic."""
+    if "is_synthetic" not in data.columns:
+        return False
+    values = data["is_synthetic"].astype(str).str.lower().str.strip()
+    return bool(values.isin({"true", "1", "yes"}).all())
+
+
 def train_and_evaluate(
     data_path: Path = DEMO_DATA_PATH,
     model_path: Path = MODEL_PATH,
@@ -67,7 +75,7 @@ def train_and_evaluate(
         "validation_predictions": validation_predictions,
         "test_predictions": test_predictions,
         "routing_report": routing_report,
-        "synthetic_data": bool(data.get("is_synthetic", True).astype(bool).all()),
+        "synthetic_data": infer_synthetic_flag(data),
     }
 
 

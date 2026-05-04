@@ -67,6 +67,19 @@ This generates:
 
 The evaluation includes accuracy, macro F1, micro F1, per-class precision, per-class recall, per-class F1, and a confusion matrix. The routing simulation maps predicted intents to support teams and computes misrouting rate against ground truth labels.
 
+## Current Demo Results
+
+The checked-in reports were generated from the included synthetic demo dataset:
+
+| Metric | Value |
+| --- | ---: |
+| Accuracy | 1.00 |
+| Macro F1 | 1.00 |
+| Micro F1 | 1.00 |
+| Misrouting rate | 0.00 |
+
+These results are only a sanity check for the demo pipeline. They should not be interpreted as real-world performance because the evaluation set contains synthetic examples.
+
 ## CLI Inference
 
 ```bash

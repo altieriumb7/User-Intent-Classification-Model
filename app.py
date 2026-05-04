@@ -66,7 +66,7 @@ def format_percent(value: float) -> str:
     return f"{value * 100:.1f}%"
 
 
-st.set_page_config(page_title="User Intent Classifier", page_icon="📨", layout="wide")
+st.set_page_config(page_title="User Intent Classifier", layout="wide")
 model = ensure_artifacts()
 data = load_demo_data()
 report = load_report()
@@ -126,6 +126,6 @@ with right:
 st.subheader("Example messages by intent")
 for intent in sorted(data["intent"].unique()):
     examples = data.loc[data["intent"] == intent, "message"].head(3).tolist()
-    with st.expander(f"{intent.replace('_', ' ').title()} → {route_intent(intent)}"):
+    with st.expander(f"{intent.replace('_', ' ').title()} -> {route_intent(intent)}"):
         for example in examples:
             st.write(f"- {example}")
