@@ -1,0 +1,12 @@
+label,precision,recall,f1-score,support
+account_access,1.0,1.0,1.0,1.0
+billing,1.0,1.0,1.0,1.0
+cancellation,1.0,1.0,1.0,1.0
+complaint,1.0,1.0,1.0,1.0
+escalation,1.0,1.0,1.0,1.0
+product_question,1.0,1.0,1.0,1.0
+refund,1.0,1.0,1.0,1.0
+technical_issue,1.0,1.0,1.0,1.0
+accuracy,1.0,1.0,1.0,1.0
+macro avg,1.0,1.0,1.0,8.0
+weighted avg,1.0,1.0,1.0,8.0

@@ -1,0 +1,81 @@
+message,intent,is_synthetic
+"I was charged twice for my monthly subscription and need help fixing the invoice.",billing,true
+"My bill shows a premium plan but I only signed up for the basic account.",billing,true
+"Can you explain why there is a late fee on my latest statement?",billing,true
+"The payment went through but my invoice still says unpaid.",billing,true
+"I need a copy of last month's receipt for my records.",billing,true
+"The tax amount on my bill looks wrong for my state.",billing,true
+"Please update the card used for billing before the next renewal.",billing,true
+"My renewal price changed and I do not understand the charge.",billing,true
+"The discount code was not applied to my subscription invoice.",billing,true
+"I want to change my billing address on the account.",billing,true
+"The app keeps crashing whenever I upload a file.",technical_issue,true
+"I get a server error when I try to open the dashboard.",technical_issue,true
+"The mobile app freezes after I sign in.",technical_issue,true
+"My reports are not loading and the page just spins.",technical_issue,true
+"The integration stopped syncing data this morning.",technical_issue,true
+"I cannot export CSV files because the download button fails.",technical_issue,true
+"Search results are blank even though I have active records.",technical_issue,true
+"The password reset page returns a 500 error.",technical_issue,true
+"Notifications are delayed by several hours today.",technical_issue,true
+"Your website is timing out when I submit the form.",technical_issue,true
+"I would like a refund because I was charged after cancelling.",refund,true
+"Please refund the annual plan since I switched back to the free tier.",refund,true
+"The product did not work for me and I want my money back.",refund,true
+"Can you reverse the payment from yesterday?",refund,true
+"I need a refund for the duplicate transaction on my card.",refund,true
+"Please process a refund for the unused portion of my subscription.",refund,true
+"I bought the wrong plan and need the purchase refunded.",refund,true
+"The trial converted by mistake and I want a refund.",refund,true
+"I request a refund and reimbursement for the last charge.",refund,true
+"Can the last invoice be credited back to my payment method?",refund,true
+"I cannot log in because my two factor code never arrives.",account_access,true
+"My account is locked after too many login attempts.",account_access,true
+"I forgot my password and the reset email is not coming through.",account_access,true
+"Please help me regain access to my old workspace.",account_access,true
+"I changed phones and cannot get into my account.",account_access,true
+"My username is not recognized when I try to sign in.",account_access,true
+"My login email is blocked and I cannot access my account.",account_access,true
+"The system says my account has been disabled.",account_access,true
+"I lost access to the authenticator app for my profile.",account_access,true
+"Please unlock my account so I can submit tickets again.",account_access,true
+"Does your product support single sign on with Azure AD?",product_question,true
+"Can I use the API to create tickets automatically?",product_question,true
+"What is included in the enterprise plan?",product_question,true
+"Do you offer reporting for team performance metrics?",product_question,true
+"How many users can I add to a standard workspace?",product_question,true
+"Is there a way to customize notification templates?",product_question,true
+"Can you answer a product question about enterprise features and roadmap?",product_question,true
+"Can your platform integrate with Salesforce?",product_question,true
+"What file types are supported for uploads?",product_question,true
+"Do you have a public roadmap for upcoming features?",product_question,true
+"I am unhappy with the repeated delays from support.",complaint,true
+"The service has been unreliable and this is frustrating.",complaint,true
+"Your agent closed my case without solving the problem.",complaint,true
+"I keep getting passed around and no one follows up.",complaint,true
+"The experience has been disappointing for our team.",complaint,true
+"I received a rude response from support yesterday.",complaint,true
+"This issue has taken too long and I am very dissatisfied.",complaint,true
+"The instructions provided were confusing and unhelpful.",complaint,true
+"I expected better communication about the outage.",complaint,true
+"I want to file a complaint because your support response was rude and unhelpful.",complaint,true
+"Please cancel my subscription at the end of the month.",cancellation,true
+"I want to close my account and stop all future renewals.",cancellation,true
+"Cancel the premium plan before it renews again.",cancellation,true
+"We are moving to another vendor and need to terminate service.",cancellation,true
+"Please deactivate my workspace and cancel billing.",cancellation,true
+"I no longer need the product and want to end my plan.",cancellation,true
+"How do I cancel my trial before being charged?",cancellation,true
+"Stop my subscription immediately.",cancellation,true
+"I need confirmation that my cancellation request was received.",cancellation,true
+"Remove the paid add on from my account.",cancellation,true
+"I need this escalated to a manager immediately.",escalation,true
+"Please have a supervisor review this unresolved ticket.",escalation,true
+"This is urgent and needs higher level support.",escalation,true
+"I want to speak with someone who can make an exception.",escalation,true
+"Escalate this case because the outage affects our executives.",escalation,true
+"I need priority handling for this business critical issue.",escalation,true
+"Please route this to senior support right away.",escalation,true
+"The first level team cannot solve this, escalate it.",escalation,true
+"I need an urgent callback from a support manager.",escalation,true
+"Please mark this ticket as high priority and escalate.",escalation,true

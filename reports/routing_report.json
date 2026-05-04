@@ -1,0 +1,64 @@
+{
+  "total_tickets": 8,
+  "misrouted_tickets": 0,
+  "misrouting_rate": 0.0,
+  "per_team_misroutes": {},
+  "routes": [
+    {
+      "true_intent": "account_access",
+      "predicted_intent": "account_access",
+      "true_team": "Identity & Access Support",
+      "predicted_team": "Identity & Access Support",
+      "misrouted": false
+    },
+    {
+      "true_intent": "refund",
+      "predicted_intent": "refund",
+      "true_team": "Refunds & Credits",
+      "predicted_team": "Refunds & Credits",
+      "misrouted": false
+    },
+    {
+      "true_intent": "complaint",
+      "predicted_intent": "complaint",
+      "true_team": "Customer Experience",
+      "predicted_team": "Customer Experience",
+      "misrouted": false
+    },
+    {
+      "true_intent": "billing",
+      "predicted_intent": "billing",
+      "true_team": "Billing Operations",
+      "predicted_team": "Billing Operations",
+      "misrouted": false
+    },
+    {
+      "true_intent": "escalation",
+      "predicted_intent": "escalation",
+      "true_team": "Escalation Desk",
+      "predicted_team": "Escalation Desk",
+      "misrouted": false
+    },
+    {
+      "true_intent": "product_question",
+      "predicted_intent": "product_question",
+      "true_team": "Product Specialists",
+      "predicted_team": "Product Specialists",
+      "misrouted": false
+    },
+    {
+      "true_intent": "cancellation",
+      "predicted_intent": "cancellation",
+      "true_team": "Retention & Account Changes",
+      "predicted_team": "Retention & Account Changes",
+      "misrouted": false
+    },
+    {
+      "true_intent": "technical_issue",
+      "predicted_intent": "technical_issue",
+      "true_team": "Technical Support",
+      "predicted_team": "Technical Support",
+      "misrouted": false
+    }
+  ]
+}
