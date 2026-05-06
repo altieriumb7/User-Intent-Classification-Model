@@ -15,7 +15,7 @@ This project classifies support tickets into eight intent categories:
 - `cancellation`
 - `escalation`
 
-The included model is a reproducible multi-class baseline using TF-IDF features and Logistic Regression. The project also includes evaluation artifacts, a routing simulation, CLI inference, tests, and a Streamlit demo.
+The included model is a reproducible multi-class baseline using TF-IDF features and Logistic Regression. The project also includes evaluation artifacts, cross-validation and monitoring reports, routing simulation, confidence-threshold triage fallback, CLI inference, tests, and a Streamlit demo.
 
 ## Data
 
@@ -64,8 +64,10 @@ This generates:
 - `reports/classification_report.csv`
 - `reports/confusion_matrix.png`
 - `reports/routing_report.json`
+- `reports/cross_validation_report.json`
+- `reports/monitoring_report.json`
 
-The evaluation includes accuracy, macro F1, micro F1, per-class precision, per-class recall, per-class F1, and a confusion matrix. The routing simulation maps predicted intents to support teams and computes misrouting rate against ground truth labels.
+The evaluation includes accuracy, macro F1, micro F1, per-class precision, per-class recall, per-class F1, and a confusion matrix. The routing simulation maps predicted intents to support teams and computes misrouting rate against ground truth labels. Training now also writes a cross-validation report and a monitoring snapshot (average confidence, low-confidence rate, intent distribution).
 
 ## Current Demo Results
 
@@ -83,7 +85,7 @@ These results are only a sanity check for the demo pipeline. They should not be 
 ## CLI Inference
 
 ```bash
-python -m src.predict_intent --text "I cannot access my account"
+python -m src.predict_intent --text "I cannot access my account" --confidence-threshold 0.55
 ```
 
 Example output:

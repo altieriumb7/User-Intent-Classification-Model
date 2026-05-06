@@ -14,11 +14,16 @@ from src.config import (
     MODEL_PATH,
     REPORTS_DIR,
     ROUTING_REPORT_PATH,
+    MONITORING_REPORT_PATH,
+    CV_REPORT_PATH,
+    DEFAULT_CONFIDENCE_THRESHOLD,
 )
 from src.data import load_dataset, split_dataset
 from src.evaluate import evaluate_predictions, save_evaluation_artifacts
 from src.model import IntentModel, save_model, train_baseline
 from src.routing import simulate_routing
+from src.benchmark import run_cross_validation_report, save_cross_validation_report
+from src.monitoring import build_monitoring_report, save_monitoring_report
 
 
 def infer_synthetic_flag(data) -> bool:
@@ -63,6 +68,22 @@ def train_and_evaluate(
         reports_dir / CONFUSION_MATRIX_PATH.name,
     )
 
+
+    cv_report = run_cross_validation_report(
+        splits.train["clean_message"].tolist(),
+        splits.train["label"].tolist(),
+    )
+    save_cross_validation_report(cv_report, reports_dir / CV_REPORT_PATH.name)
+
+    test_probabilities = intent_model.predict_proba(splits.test["clean_message"].tolist())
+    test_confidences = test_probabilities.max(axis=1).tolist()
+    monitoring_report = build_monitoring_report(
+        test_predictions,
+        test_confidences,
+        low_confidence_threshold=DEFAULT_CONFIDENCE_THRESHOLD,
+    )
+    save_monitoring_report(monitoring_report, reports_dir / MONITORING_REPORT_PATH.name)
+
     routing_report = simulate_routing(splits.test["intent"].tolist(), test_predictions)
     routing_path = reports_dir / ROUTING_REPORT_PATH.name
     routing_path.parent.mkdir(parents=True, exist_ok=True)
@@ -75,6 +96,8 @@ def train_and_evaluate(
         "validation_predictions": validation_predictions,
         "test_predictions": test_predictions,
         "routing_report": routing_report,
+        "cross_validation_report": cv_report,
+        "monitoring_report": monitoring_report,
         "synthetic_data": infer_synthetic_flag(data),
     }
 
