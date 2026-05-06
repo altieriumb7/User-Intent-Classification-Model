@@ -14,7 +14,10 @@ METRICS_PATH = REPORTS_DIR / "evaluation_metrics.json"
 CLASSIFICATION_REPORT_PATH = REPORTS_DIR / "classification_report.csv"
 CONFUSION_MATRIX_PATH = REPORTS_DIR / "confusion_matrix.png"
 ROUTING_REPORT_PATH = REPORTS_DIR / "routing_report.json"
+MONITORING_REPORT_PATH = REPORTS_DIR / "monitoring_report.json"
+CV_REPORT_PATH = REPORTS_DIR / "cross_validation_report.json"
 
 RANDOM_STATE = 42
 TEST_SIZE = 0.10
 VALIDATION_SIZE = 0.10
+DEFAULT_CONFIDENCE_THRESHOLD = 0.55
