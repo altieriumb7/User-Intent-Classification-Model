@@ -5,6 +5,7 @@ pytest-cache-files-*/
 .codex_tmp/
 .env
 models/*.joblib
+reports/*.png
 .streamlit-dev.log
 .streamlit-dev.err
 .venv/
