@@ -1,0 +1,14 @@
+.git
+.github
+.pytest_cache
+.env
+__pycache__
+*.py[cod]
+.venv
+venv
+pytest-cache-files-*
+.codex_tmp
+*.tmp
+*.log
+.streamlit-dev.log
+.streamlit-dev.err

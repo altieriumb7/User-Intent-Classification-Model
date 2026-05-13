@@ -1,0 +1,6 @@
+name: demo-redteam-eval
+mode: demo
+benchmark_cases: benchmarks/qualitative_redteam_cases.yaml
+reports_dir: reports
+provider: none
+judge: deterministic_demo

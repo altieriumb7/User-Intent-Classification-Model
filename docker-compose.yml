@@ -1,0 +1,18 @@
+services:
+  llm-redteam-dashboard:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      DEMO_MODE: "true"
+      ALLOW_LIVE_RUNS: "false"
+      DEFAULT_CONFIG_PATH: "evals/config.yaml"
+      REPORTS_DIR: "reports"
+      BENCHMARK_MODE: "demo"
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
