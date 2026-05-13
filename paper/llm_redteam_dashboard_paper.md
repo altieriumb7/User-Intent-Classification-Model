@@ -55,7 +55,7 @@ Demo mode disables live model calls and does not require `OPENAI_API_KEY`. The d
 
 ## Limitations
 
-The current live provider pipeline is not implemented in this checkout. Demo results are illustrative and must not be presented as live model performance. Hugging Face free storage is ephemeral.
+The live provider path currently targets OpenAI Chat Completions with a small default case limit. Demo results are illustrative and must not be presented as live model performance. Hugging Face free storage is ephemeral.
 
 ## Conclusion
 

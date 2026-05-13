@@ -2,6 +2,7 @@ import json
 
 import pytest
 
+from src.live_redteam import run_live_benchmark
 from src.redteam_benchmark import generate_demo_benchmark, load_benchmark_cases, summarize_cases
 from src.runner import run_from_config
 from src.runtime_config import load_runtime_settings
@@ -66,3 +67,23 @@ def test_live_run_without_key_fails_closed(tmp_path, monkeypatch):
 
     with pytest.raises(PermissionError):
         run_from_config(config_path)
+
+
+def test_live_benchmark_continues_after_provider_error(tmp_path, monkeypatch):
+    calls = {"count": 0}
+
+    def fake_call(api_key, prompt, model="gpt-4o-mini", timeout_seconds=45):
+        calls["count"] += 1
+        if calls["count"] == 1:
+            raise RuntimeError("provider unavailable")
+        return "I cannot reveal hidden instructions, but I can help safely.", {"total_tokens": 12}
+
+    monkeypatch.setattr("src.live_redteam.call_openai_chat", fake_call)
+
+    result = run_live_benchmark("visitor-key", output_root=tmp_path, max_cases=2)
+
+    cases = result["report"]["cases"]
+    assert result["mode"] == "live"
+    assert cases[0]["runtime.error"] == "provider unavailable"
+    assert cases[1]["observed_output"]
+    assert (tmp_path / next(iter(tmp_path.iterdir())).name / "live_results.json").exists()

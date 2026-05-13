@@ -21,6 +21,7 @@ from src.data import load_dataset
 from src.model import load_model
 from src.predict_intent import predict_with_model
 from src.redteam_benchmark import generate_demo_benchmark, load_benchmark_report
+from src.runner import run_from_config
 from src.runtime_config import load_runtime_settings
 from src.routing import INTENT_TO_TEAM, route_intent
 from src.train import train_and_evaluate
@@ -234,15 +235,35 @@ with st.sidebar:
             type="password",
             help="Stored only in this Streamlit session; never written to disk.",
         )
+        st.session_state["live_model"] = st.text_input("Live model", value="gpt-4o-mini")
+        st.session_state["live_max_cases"] = st.slider("Live cases", min_value=1, max_value=6, value=3)
     if settings.live_run_allowed(st.session_state.get("session_api_key")):
         st.warning("Live evaluation may consume API credits.")
         if st.button("Run live evaluation (may consume API credits)"):
-            st.error("Live provider execution is not implemented in this repository checkout.")
+            with st.spinner("Running live benchmark with your session-only key..."):
+                try:
+                    st.session_state["live_report"] = run_from_config(
+                        settings.default_config_path,
+                        settings=settings,
+                        session_api_key=st.session_state.get("session_api_key"),
+                        live_model=st.session_state.get("live_model", "gpt-4o-mini"),
+                        live_max_cases=int(st.session_state.get("live_max_cases", 3)),
+                    )
+                    st.success("Live evaluation complete.")
+                except Exception as exc:
+                    st.error(f"Live evaluation failed: {exc}")
+    elif not settings.demo_mode:
+        st.info("Paste a session-only OpenAI API key to enable live evaluation.")
 
 benchmark_tab, classifier_tab = st.tabs(
     ["Benchmark & Qualitative Evaluation", "Existing Intent Classifier Demo"]
 )
 with benchmark_tab:
     render_benchmark_tab(settings)
+    if "live_report" in st.session_state:
+        st.subheader("Latest live evaluation")
+        live_report = st.session_state["live_report"]["report"]
+        st.json(live_report["summary"])
+        st.dataframe(pd.DataFrame(live_report["cases"]), width="stretch", hide_index=True)
 with classifier_tab:
     render_classifier_tab()

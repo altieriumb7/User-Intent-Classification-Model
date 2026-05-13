@@ -4,3 +4,5 @@ benchmark_cases: benchmarks/qualitative_redteam_cases.yaml
 reports_dir: reports
 provider: none
 judge: deterministic_demo
+openai_model: gpt-4o-mini
+live_max_cases: 3

@@ -30,7 +30,16 @@ Optional secret for private/local live work only:
 OPENAI_API_KEY=<your key>
 ```
 
-The public Space should keep `DEMO_MODE=true` and `ALLOW_LIVE_RUNS=false`.
+For a static public demo, keep `DEMO_MODE=true` and `ALLOW_LIVE_RUNS=false`.
+
+To let visitors run real evaluations with their own session-only OpenAI key, set:
+
+```text
+DEMO_MODE=false
+ALLOW_LIVE_RUNS=true
+```
+
+Do not add your own `OPENAI_API_KEY` to a public Space unless you are willing to pay for visitor usage.
 
 ## Safe Public Demo
 
@@ -42,6 +51,8 @@ In demo mode:
 - generated runtime files use `REPORTS_DIR`; Hugging Face free storage is ephemeral
 
 The dashboard shows whether an API key is present but never displays the key. A session-only key field appears only outside demo mode and is never persisted.
+
+In visitor live mode, users paste their own OpenAI key into the sidebar. The key stays in Streamlit session state and is used only for that run.
 
 ## Local Setup
 
@@ -100,13 +111,13 @@ Current benchmark metrics are demo/sample metrics derived from the repository ca
 
 ## Live Evaluation
 
-This checkout includes a guarded CLI and runtime configuration, but no implemented live provider pipeline. Live execution intentionally fails closed unless:
+This checkout includes a guarded OpenAI live benchmark path. Live execution intentionally fails closed unless:
 
 - `DEMO_MODE=false`
 - `ALLOW_LIVE_RUNS=true`
 - `OPENAI_API_KEY` or a session-only key is present
 
-Integrate a provider/judge implementation in `src/runner.py` before claiming live results.
+Live results are written under `reports/live_benchmark/<timestamp>/`. Public Hugging Face storage is ephemeral.
 
 ## Existing Intent Classifier
 

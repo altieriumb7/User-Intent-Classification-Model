@@ -19,6 +19,8 @@ Environment variables:
 - `REPORTS_DIR=reports`
 - `BENCHMARK_MODE=demo`
 - `OPENAI_API_KEY=` optional local secret
+- `OPENAI_MODEL=gpt-4o-mini`
+- `LIVE_MAX_CASES=3`
 
 Expected generated files:
 
@@ -30,5 +32,5 @@ Known limitations:
 
 - Public demo uses static deterministic artifacts.
 - Hugging Face free storage is ephemeral.
-- Live provider execution is guarded but not implemented in this checkout.
+- Live OpenAI execution requires a visitor/session key or local `OPENAI_API_KEY`.
 - Docker runtime verification requires a running Docker daemon.

@@ -8,6 +8,7 @@ from typing import Any
 
 import yaml
 
+from src.live_redteam import DEFAULT_LIVE_MODEL, run_live_benchmark
 from src.redteam_benchmark import generate_demo_benchmark
 from src.runtime_config import RuntimeSettings, load_runtime_settings
 
@@ -23,6 +24,8 @@ def run_from_config(
     config_path: Path | str,
     settings: RuntimeSettings | None = None,
     session_api_key: str | None = None,
+    live_model: str | None = None,
+    live_max_cases: int | None = None,
 ) -> dict[str, Any]:
     settings = settings or load_runtime_settings()
     config = load_eval_config(config_path)
@@ -42,7 +45,10 @@ def run_from_config(
             "or a session-only API key."
         )
 
-    raise NotImplementedError(
-        "Live provider execution is not implemented in this repository checkout. "
-        "The guarded CLI is ready for integration with a provider pipeline."
+    return run_live_benchmark(
+        api_key=session_api_key or os.environ["OPENAI_API_KEY"],
+        cases_path=config.get("benchmark_cases", "benchmarks/qualitative_redteam_cases.yaml"),
+        output_root=reports_dir / "live_benchmark",
+        model=str(live_model or config.get("openai_model", os.getenv("OPENAI_MODEL", DEFAULT_LIVE_MODEL))),
+        max_cases=int(live_max_cases or config.get("live_max_cases", os.getenv("LIVE_MAX_CASES", "3"))),
     )

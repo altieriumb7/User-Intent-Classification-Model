@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 pytest-cache-files-*/
 .codex_tmp/
+.codex_deps/
 .env
 models/*.joblib
 reports/*.png

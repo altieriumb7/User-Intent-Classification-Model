@@ -8,6 +8,7 @@ __pycache__
 venv
 pytest-cache-files-*
 .codex_tmp
+.codex_deps
 *.tmp
 *.log
 .streamlit-dev.log
