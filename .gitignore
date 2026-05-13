@@ -4,6 +4,7 @@ __pycache__/
 pytest-cache-files-*/
 .codex_tmp/
 .env
+models/*.joblib
 .streamlit-dev.log
 .streamlit-dev.err
 .venv/
