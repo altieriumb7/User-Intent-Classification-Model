@@ -1,5 +1,5 @@
 ---
-title: LLM Red Team Evaluation Dashboard
+title: User Intent Classification and Red-Team Dashboard
 emoji: 🧪
 colorFrom: red
 colorTo: gray
